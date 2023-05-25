@@ -384,7 +384,7 @@ void serializarTPersonasABBaux(TPilaPersona &pila, TPersonasABB personasABB)
         }
         desencolarDeTColaPersonasABB(cola);
     }
-    liberarTColaPersonasABB(cola);
+    // liberarTColaPersonasABB(cola);
 }
 
 TPilaPersona serializarTPersonasABB(TPersonasABB personasABB)
