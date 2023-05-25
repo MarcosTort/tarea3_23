@@ -84,10 +84,9 @@ bool sumaPares(nat k, TConjuntoIds c)
       {
         liberarTConjuntoIds(paresDeK);
         liberarTConjuntoIds(paresDeC);
-        return false;
       }
     }
-    
+    return false;
 
    
 
