@@ -3,7 +3,7 @@
 TPilaPersona menoresQueElResto(TPersonasLDE lista)
 {
      TPilaPersona p = crearTPilaPersona();
-    int cantidad = cantidadTPersonasLDE(lista);
+    nat cantidad = cantidadTPersonasLDE(lista);
   if (lista != NULL)
   {
     TPersonasLDE aux = lista;
