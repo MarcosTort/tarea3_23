@@ -398,49 +398,55 @@ TPilaPersona serializarTPersonasABB(TPersonasABB personasABB)
 
     return pilaAux;
 }
-TPersonasABB deserializarTPersonasABB(TPilaPersona &pilaPersonas)
+TPersonasABB deserializarTPersonasABB(TPilaPersona& pilaPersonas)
 {
     if (cantidadEnTPilaPersona(pilaPersonas) == 0)
     {
         return NULL;
     }
-    TPersonasABB personasABB = new rep_personasAbb;
-    TColaPersonasABB cola = crearTColaPersonasABB();
 
+    TPersonasABB personasABB = new rep_personasAbb;
     personasABB->persona = copiarTPersona(cimaDeTPilaPersona(pilaPersonas));
     personasABB->izq = NULL;
     personasABB->der = NULL;
     desapilarDeTPilaPersona(pilaPersonas);
+
+    TColaPersonasABB cola = crearTColaPersonasABB();
     encolarEnTColaPersonasABB(personasABB, cola);
-    printf("edad: %d\n", edadTPersona(cimaDeTPilaPersona(pilaPersonas)));
 
-    while (cantidadEnTPilaPersona(pilaPersonas) > 0)
+    while (cantidadEnTColaPersonasABB(cola) > 0)
     {
-        printf("edad: %d\n", edadTPersona(cimaDeTPilaPersona(pilaPersonas)));
         TPersonasABB frenteCola = frenteDeTColaPersonasABB(cola);
-        TPersonasABB izq = new rep_personasAbb;
-        TPersonasABB der = new rep_personasAbb;
-        izq->persona = copiarTPersona(cimaDeTPilaPersona(pilaPersonas));
-        desapilarDeTPilaPersona(pilaPersonas);
-        printf("edad: %d\n", edadTPersona(cimaDeTPilaPersona(pilaPersonas)));
-
-        der->persona = copiarTPersona(cimaDeTPilaPersona(pilaPersonas));
-        desapilarDeTPilaPersona(pilaPersonas);
-
-        izq->izq = NULL;
-        izq->der = NULL;
-        der->izq = NULL;
-        der->der = NULL;
-        frenteCola->der = der;
-        frenteCola->izq = izq;
-        encolarEnTColaPersonasABB(personasABB->izq, cola);
-        encolarEnTColaPersonasABB(personasABB->der, cola);
         desencolarDeTColaPersonasABB(cola);
+
+        if (cantidadEnTPilaPersona(pilaPersonas) > 0)
+        {
+            TPersonasABB izq = new rep_personasAbb;
+            izq->persona = copiarTPersona(cimaDeTPilaPersona(pilaPersonas));
+            desapilarDeTPilaPersona(pilaPersonas);
+            izq->izq = NULL;
+            izq->der = NULL;
+            frenteCola->izq = izq;
+            encolarEnTColaPersonasABB(izq, cola);
+        }
+
+        if (cantidadEnTPilaPersona(pilaPersonas) > 0)
+        {
+            TPersonasABB der = new rep_personasAbb;
+            der->persona = copiarTPersona(cimaDeTPilaPersona(pilaPersonas));
+            desapilarDeTPilaPersona(pilaPersonas);
+            der->izq = NULL;
+            der->der = NULL;
+            frenteCola->der = der;
+            encolarEnTColaPersonasABB(der, cola);
+        }
     }
+
     liberarTColaPersonasABB(cola);
     liberarTPilaPersona(pilaPersonas);
     return personasABB;
 }
+
 
 ///////////////////////////////////////////////////////////////////////////
 /////////////  FIN NUEVAS FUNCIONES  //////////////////////////////////////
