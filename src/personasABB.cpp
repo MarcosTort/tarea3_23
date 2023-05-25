@@ -362,14 +362,7 @@ bool esVaciaTPilaPersona(TPilaPersona pila)
 {
     return pila == NULL;
 }
-void invertirPila(TPilaPersona pila, TPilaPersona &pilaInvertida)
-{
-    while (cantidadEnTPilaPersona(pila) > 0)
-    {
-        apilarEnTPilaPersona(pilaInvertida, cimaDeTPilaPersona(pila));
-        desapilarDeTPilaPersona(pila);
-    }
-}
+
 void serializarTPersonasABBaux(TPilaPersona pila, TPersonasABB personasABB, int nivel)
 {
     if (nivel == 0)
@@ -395,7 +388,7 @@ TPilaPersona serializarTPersonasABB(TPersonasABB personasABB)
     
     while (cantidadEnTPilaPersona(pila) > 0)
     {
-        apilarEnTPilaPersona(pilaAux,copiarTPersona( cimaDeTPilaPersona(pila)));
+        apilarEnTPilaPersona(pilaAux, cimaDeTPilaPersona(pila));
         desapilarDeTPilaPersona(pila);
     }
     liberarTPilaPersona(pila);
