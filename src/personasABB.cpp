@@ -434,12 +434,12 @@ TPersonasABB deserializarTPersonasABB(TPilaPersona &pilaPersonas)
         TPersonasABB izq = crearTPersonasABB();
         TPersonasABB der = crearTPersonasABB();
 
-        izq->persona = cimaDeTPilaPersona(pilaPersonas);
+        izq->persona = copiarTPersona(cimaDeTPilaPersona(pilaPersonas));
         personasABB->izq = izq;
 
         desapilarDeTPilaPersona(pilaPersonas);
 
-        der->persona = cimaDeTPilaPersona(pilaPersonas);
+        der->persona = copiarTPersona(cimaDeTPilaPersona(pilaPersonas));
         personasABB->der = der;
 
         desapilarDeTPilaPersona(pilaPersonas);
