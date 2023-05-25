@@ -360,10 +360,7 @@ nat amplitudTPersonasABB(TPersonasABB personasABB)
     }
     return amplitud;
 }
-bool esVaciaTPilaPersona(TPilaPersona pila)
-{
-    return pila == NULL;
-}
+
 
 void serializarTPersonasABBaux(TPilaPersona &pila, TPersonasABB personasABB)
 {
@@ -384,7 +381,7 @@ void serializarTPersonasABBaux(TPilaPersona &pila, TPersonasABB personasABB)
         }
         desencolarDeTColaPersonasABB(cola);
     }
-    // liberarTColaPersonasABB(cola);
+    liberarTColaPersonasABB(cola);
 }
 
 TPilaPersona serializarTPersonasABB(TPersonasABB personasABB)
@@ -393,7 +390,7 @@ TPilaPersona serializarTPersonasABB(TPersonasABB personasABB)
     TPilaPersona pilaAux = crearTPilaPersona();
     
     serializarTPersonasABBaux(pila, personasABB);
-    while (!esVaciaTPilaPersona(pila))
+    while (cantidadEnTPilaPersona(pila) > 0)
     {
         apilarEnTPilaPersona(pilaAux, cimaDeTPilaPersona(pila));
         desapilarDeTPilaPersona(pila);
