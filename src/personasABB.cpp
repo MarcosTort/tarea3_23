@@ -427,10 +427,13 @@ TPersonasABB deserializarTPersonasABB(TPilaPersona &pilaPersonas)
     TColaPersonasABB cola = crearTColaPersonasABB();
 
     personasABB->persona = copiarTPersona(cimaDeTPilaPersona(pilaPersonas));
+    personasABB->izq = NULL;
+    personasABB->der = NULL;
     desapilarDeTPilaPersona(pilaPersonas);
     encolarEnTColaPersonasABB(personasABB, cola);
     while (cantidadEnTPilaPersona(pilaPersonas) > 0)
     {
+
         TPersonasABB izq = new rep_personasAbb ;
         TPersonasABB der = new rep_personasAbb;
 
