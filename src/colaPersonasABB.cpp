@@ -1,26 +1,35 @@
 #include "../include/colaPersonasABB.h"
 #include "../include/personasLDE.h"
-
+struct celda {
+  TPersonasABB persona;
+  celda *siguiente;
+};
 struct rep_colaPersonasABB
 {
-  TPersonasABB persona;
-  TColaPersonasABB siguiente;
+  celda *primero;
+  celda *ultimo;
   int cantidad;
 };
 
 TColaPersonasABB crearTColaPersonasABB()
 {
-  return NULL;
+    TColaPersonasABB nuevo = new rep_colaPersonasABB;
+    nuevo->primero = NULL;
+    nuevo->ultimo = NULL;
+    nuevo->cantidad = 0;
+    return nuevo;
 }
 
 void liberarTColaPersonasABB(TColaPersonasABB &c)
 {
-  if (c != NULL)
+  celda *aux ;
+  while (c->primero != NULL)
   {
-    liberarTColaPersonasABB(c->siguiente);
-    delete c;
-    c = NULL;
+    aux = c->primero;
+    c->primero = c->primero->siguiente;
+    delete aux;
   }
+  delete c;
 }
 
 nat cantidadEnTColaPersonasABB(TColaPersonasABB c)
@@ -30,28 +39,31 @@ nat cantidadEnTColaPersonasABB(TColaPersonasABB c)
 
 void encolarEnTColaPersonasABB(TPersonasABB t, TColaPersonasABB &c)
 {
-  if (c == NULL)
+  celda *nuevo = new celda;
+  nuevo->persona = t;
+  nuevo->siguiente = NULL;
+  if (c->primero == NULL)
   {
-    c = new rep_colaPersonasABB;
-    c->persona = t;
-    c->cantidad = 1;
-    c->siguiente = NULL;
+    c->primero = nuevo;
+    c->ultimo = nuevo;
   }
   else
   {
-    encolarEnTColaPersonasABB(t, c->siguiente);
-    c->cantidad++;
+    c->ultimo->siguiente = nuevo;
+    c->ultimo = nuevo;
   }
+  c->cantidad++;
 }
 
 TPersonasABB frenteDeTColaPersonasABB(TColaPersonasABB c)
 {
-  return c->persona;
+  return c->primero->persona;
 }
 
 void desencolarDeTColaPersonasABB(TColaPersonasABB &c)
 {
-  TColaPersonasABB aux = c;
-  c = c->siguiente;
+  celda *aux = c->primero;
+  c->primero = c->primero->siguiente;
   delete aux;
+  c->cantidad--;
 }
