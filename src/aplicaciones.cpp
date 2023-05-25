@@ -22,7 +22,7 @@ TPilaPersona menoresQueElResto(TPersonasLDE lista)
         else
         {
 
-          while (cantidadEnTPilaPersona(p) > 0 && edadTPersona(cimaDeTPilaPersona(p)) >= edadTPersona(obtenerDeTPersonasLDE(aux, i)))
+          while (cantidadEnTPilaPersona(p) > 0 )
           {
             desapilarDeTPilaPersona(p);
           }
@@ -36,31 +36,7 @@ TPilaPersona menoresQueElResto(TPersonasLDE lista)
     }
   }
   return p;
-  // int cantidad = cantidadTPersonasLDE(lista);
-  // TPilaPersona pila = crearTPilaPersona();
-  // apilarEnTPilaPersona(pila, obtenerDeTPersonasLDE(lista, 1));
-  // for (int i = 2; i <= cantidad; i++)
-  // {
-  //     TPersona persona = obtenerDeTPersonasLDE(lista, i);
-  //     TPersona persona2 = obtenerDeTPersonasLDE(lista, i + 1);
-  //     if (persona2 == NULL)
-  //     {
-  //         break;
-  //     }
-  //     if (edadTPersona(persona) < edadTPersona(persona2))
-  //     {
-  //         apilarEnTPilaPersona(pila, persona);
-  //     }
-  //     else
-  //     {
-  //         while (cantidadEnTPilaPersona(pila))
-  //         {
-  //             desapilarDeTPilaPersona(pila);
-  //         }
-  //         apilarEnTPilaPersona(pila, persona2);
-  //     }
-  // }
-  // return pila;
+ 
 }
 // k = c1 + c2
 // c1 = k - c2
