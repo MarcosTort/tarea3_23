@@ -30,6 +30,7 @@ void liberarTColaPersonasABB(TColaPersonasABB &c)
     delete aux;
   }
   delete c;
+  c = NULL;
 }
 
 nat cantidadEnTColaPersonasABB(TColaPersonasABB c)
