@@ -414,6 +414,7 @@ TPersonasABB deserializarTPersonasABB(TPilaPersona &pilaPersonas)
     encolarEnTColaPersonasABB(personasABB, cola);
     while (cantidadEnTPilaPersona(pilaPersonas) > 0)
     {
+        printf("cantidad en cola: %d\n", cantidadEnTPilaPersona(pilaPersonas));
         TPersonasABB frenteCola = frenteDeTColaPersonasABB(cola);
         TPersonasABB izq = new rep_personasAbb;
         TPersonasABB der = new rep_personasAbb;
