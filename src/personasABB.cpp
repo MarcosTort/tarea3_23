@@ -392,7 +392,12 @@ TPilaPersona serializarTPersonasABB(TPersonasABB personasABB)
     TPilaPersona pilaAux = crearTPilaPersona();
     int altura = alturaTPersonasABB(personasABB);
     serializarTPersonasABBaux(pila, personasABB, altura);
-    invertirPila(pila, pilaAux);
+    
+    while (cantidadEnTPilaPersona(pila) > 0)
+    {
+        apilarEnTPilaPersona(pilaAux,copiarTPersona( cimaDeTPilaPersona(pila)));
+        desapilarDeTPilaPersona(pila);
+    }
     liberarTPilaPersona(pila);
     return pilaAux;
 }
