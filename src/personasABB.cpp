@@ -388,7 +388,7 @@ TPilaPersona serializarTPersonasABB(TPersonasABB personasABB)
     
     while (cantidadEnTPilaPersona(pila) > 0)
     {
-        apilarEnTPilaPersona(pilaAux,copiarTPersona( cimaDeTPilaPersona(pila)));
+        apilarEnTPilaPersona(pilaAux,cimaDeTPilaPersona(pila));
         desapilarDeTPilaPersona(pila);
     }
     liberarTPilaPersona(pila);
