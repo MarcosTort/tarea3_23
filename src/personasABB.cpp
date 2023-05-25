@@ -398,25 +398,6 @@ TPilaPersona serializarTPersonasABB(TPersonasABB personasABB)
 
     return pilaAux;
 }
-void deserializarTPersonasABBaux(TPilaPersona &pila, TPersonasABB &personasABB, TColaPersonasABB &cola)
-{
-    if (cantidadEnTPilaPersona(pila) == 0)
-    {
-        return;
-    }
-    personasABB->persona = cimaDeTPilaPersona(pila);
-    desapilarDeTPilaPersona(pila);
-    encolarEnTColaPersonasABB(personasABB, cola);
-
-    TPersonasABB aux = frenteDeTColaPersonasABB(cola);
-    if (aux != NULL)
-    {
-        deserializarTPersonasABBaux(pila, aux->izq, cola);
-        deserializarTPersonasABBaux(pila, aux->der, cola);
-    }
-    desencolarDeTColaPersonasABB(cola);
-}
-
 TPersonasABB deserializarTPersonasABB(TPilaPersona &pilaPersonas)
 {
     if (cantidadEnTPilaPersona(pilaPersonas) == 0)
@@ -434,14 +415,13 @@ TPersonasABB deserializarTPersonasABB(TPilaPersona &pilaPersonas)
     while (cantidadEnTPilaPersona(pilaPersonas) > 0)
     {
 
-        TPersonasABB izq = new rep_personasAbb ;
+        TPersonasABB izq = new rep_personasAbb;
         TPersonasABB der = new rep_personasAbb;
 
         izq->persona = copiarTPersona(cimaDeTPilaPersona(pilaPersonas));
         izq->izq = NULL;
         izq->der = NULL;
         personasABB->izq = izq;
-
 
         desapilarDeTPilaPersona(pilaPersonas);
 
