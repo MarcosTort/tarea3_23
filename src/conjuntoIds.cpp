@@ -82,14 +82,18 @@ void liberarTConjuntoIds(TConjuntoIds &c)
 	delete c;
 	c = NULL;
 };
-
+	nat max(nat a, nat b)
+	{
+		return a > b ? a : b;
+	}
 TConjuntoIds unionTConjuntoIds(TConjuntoIds c1, TConjuntoIds c2)
 {
-	TConjuntoIds c = crearTConjuntoIds(c1->cantElem + c2->cantElem);
-	c->cantMax = c1->cantMax + c2->cantMax;
+	nat cantMax = max(c1->cantMax, c2->cantMax);
+	TConjuntoIds c = crearTConjuntoIds(cantMax);
+	c->cantMax = cantMax;
 
 
-	for (nat i = 0; i < 2 * c1->cantMax; i++)
+	for (nat i = 0; i < cantMax; i++)
 	{
 		insertarTConjuntoIds(c1->array[i], c);
 		insertarTConjuntoIds(c2->array[i], c);
