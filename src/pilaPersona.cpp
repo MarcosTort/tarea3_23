@@ -17,6 +17,7 @@ void liberarTPilaPersona(TPilaPersona &p)
 {
   liberarTPersonasLDE(p->personas);
   delete p;
+  p = NULL;
 }
 
 nat cantidadEnTPilaPersona(TPilaPersona p)
