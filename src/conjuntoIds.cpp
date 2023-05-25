@@ -123,7 +123,7 @@ TConjuntoIds diferenciaTConjuntoIds(TConjuntoIds c1, TConjuntoIds c2)
 	{
 		if (!perteneceTConjuntoIds(i, c2))
 		{
-			insertarTConjuntoIds(c1->array[i], c);
+			insertarTConjuntoIds(i, c);
 		}
 	}
 	return c;
