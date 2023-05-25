@@ -421,7 +421,6 @@ TPersonasABB deserializar(TPilaPersona pila)
 TPersonasABB deserializarTPersonasABB(TPilaPersona &pilaPersonas)
 {
 
-    nat altura = log2(cantidadEnTPilaPersona(pilaPersonas) + 1);
     TPersonasABB nuevo = deserializar(pilaPersonas);
     liberarTPilaPersona(pilaPersonas);
     return nuevo;
