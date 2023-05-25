@@ -6,34 +6,32 @@ TPilaPersona menoresQueElResto(TPersonasLDE lista)
   nat cantidad = cantidadTPersonasLDE(lista);
   if (lista != NULL)
   {
-    apilarEnTPilaPersona(p, obtenerInicioDeTPersonasLDE(lista));
-    nat cantidadP = cantidadEnTPilaPersona(p);
-
+    TPersonasLDE aux = lista;
+    apilarEnTPilaPersona(p, obtenerInicioDeTPersonasLDE(aux));
+    
     for (nat i = 1; i <= cantidad; i++)
     {
-    TPersona persona = obtenerDeTPersonasLDE(lista, i);
-      if (cantidadP > 0)
+      if (cantidadEnTPilaPersona(p) > 0)
       {
 
-        if (edadTPersona(cimaDeTPilaPersona(p)) < edadTPersona(persona))
+        if (edadTPersona(cimaDeTPilaPersona(p)) < edadTPersona(obtenerDeTPersonasLDE(aux, i)))
         {
 
-          apilarEnTPilaPersona(p, persona);
+          apilarEnTPilaPersona(p, obtenerDeTPersonasLDE(aux, i));
         }
         else
         {
 
-          while (cantidadP > 0 && edadTPersona(cimaDeTPilaPersona(p)) >= edadTPersona(persona))
+          while (cantidadEnTPilaPersona(p) > 0 && edadTPersona(cimaDeTPilaPersona(p)) >= edadTPersona(obtenerDeTPersonasLDE(aux, i)))
           {
             desapilarDeTPilaPersona(p);
           }
-          apilarEnTPilaPersona(p, persona);
+          apilarEnTPilaPersona(p, obtenerDeTPersonasLDE(aux, i));
         }
       }
       else
       {
-
-        apilarEnTPilaPersona(p, persona);
+        apilarEnTPilaPersona(p, obtenerDeTPersonasLDE(aux, i));
       }
     }
   }
