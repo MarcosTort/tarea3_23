@@ -372,7 +372,7 @@ void serializarTPersonasABBaux(TPilaPersona pila, TPersonasABB personasABB, int 
     else
     {
 
-        apilarEnTPilaPersona(pila, copiarTPersona(personasABB->persona));
+        apilarEnTPilaPersona(pila, personasABB->persona);
         serializarTPersonasABBaux(pila, personasABB->izq, nivel - 1);
         serializarTPersonasABBaux(pila, personasABB->der, nivel - 1);
         return;
@@ -388,7 +388,7 @@ TPilaPersona serializarTPersonasABB(TPersonasABB personasABB)
     
     while (cantidadEnTPilaPersona(pila) > 0)
     {
-        apilarEnTPilaPersona(pilaAux, cimaDeTPilaPersona(pila));
+        apilarEnTPilaPersona(pilaAux,copiarTPersona( cimaDeTPilaPersona(pila)));
         desapilarDeTPilaPersona(pila);
     }
     liberarTPilaPersona(pila);
