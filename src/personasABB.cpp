@@ -418,14 +418,14 @@ TPersonasABB deserializarTPersonasABB(TPilaPersona &pilaPersonas)
         TPersonasABB izq = new rep_personasAbb;
         TPersonasABB der = new rep_personasAbb;
 
-        izq->persona = cimaDeTPilaPersona(pilaPersonas);
+        izq->persona = copiarTPersona(cimaDeTPilaPersona(pilaPersonas));
         izq->izq = NULL;
         izq->der = NULL;
         personasABB->izq = izq;
 
         desapilarDeTPilaPersona(pilaPersonas);
 
-        der->persona = cimaDeTPilaPersona(pilaPersonas);
+        der->persona = copiarTPersona(cimaDeTPilaPersona(pilaPersonas));
         der->izq = NULL;
         der->der = NULL;
         personasABB->der = der;
@@ -435,7 +435,6 @@ TPersonasABB deserializarTPersonasABB(TPilaPersona &pilaPersonas)
         encolarEnTColaPersonasABB(personasABB->der, cola);
         desencolarDeTColaPersonasABB(cola);
     }
-    liberarTColaPersonasABB(cola);
     liberarTPilaPersona(pilaPersonas);
     return personasABB;
 }
