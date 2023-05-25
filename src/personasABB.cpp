@@ -397,15 +397,20 @@ TPilaPersona serializarTPersonasABB(TPersonasABB personasABB)
 
 TPersonasABB deserializarTPersonasABB(TPilaPersona &pilaPersonas)
 {
-    TPersonasABB personasABB = crearTPersonasABB();
-    while (cantidadEnTPilaPersona(pilaPersonas) > 0)
+    if (esVaciaTPilaPersona(pilaPersonas))
     {
-        TPersona persona = cimaDeTPilaPersona(pilaPersonas);
-        insertarTPersonasABB(personasABB, copiarTPersona(persona));
-        desapilarDeTPilaPersona(pilaPersonas);
+        return NULL;
     }
-    liberarTPilaPersona(pilaPersonas);
-    return personasABB;
+    else
+    {
+        TPersonasABB personasABB = new rep_personasAbb;
+        personasABB->persona = cimaDeTPilaPersona(pilaPersonas);
+        desapilarDeTPilaPersona(pilaPersonas);
+        personasABB->izq = deserializarTPersonasABB(pilaPersonas);
+        personasABB->der = deserializarTPersonasABB(pilaPersonas);
+        return personasABB;
+    }
+    
 }
 
 ///////////////////////////////////////////////////////////////////////////
