@@ -118,10 +118,10 @@ TConjuntoIds interseccionTConjuntoIds(TConjuntoIds c1, TConjuntoIds c2)
 TConjuntoIds diferenciaTConjuntoIds(TConjuntoIds c1, TConjuntoIds c2)
 {
 
-	TConjuntoIds c = crearTConjuntoIds(c1->cantElem);
-	for (nat i = 0; i < c1->cantElem; i++)
+	TConjuntoIds c = crearTConjuntoIds(c1->cantMax);
+	for (nat i = 0; i < c1->cantMax; i++)
 	{
-		if (!perteneceTConjuntoIds(c1->array[i], c2))
+		if (!perteneceTConjuntoIds(i, c2))
 		{
 			insertarTConjuntoIds(c1->array[i], c);
 		}
