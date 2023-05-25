@@ -49,7 +49,7 @@ void liberarTPersonasABB(TPersonasABB &personasABB)
         liberarTPersonasABB(personasABB->der);
         liberarTPersona(personasABB->persona);
         delete personasABB;
-        personasABB = NULL;
+        // personasABB = NULL;
     }
 }
 
