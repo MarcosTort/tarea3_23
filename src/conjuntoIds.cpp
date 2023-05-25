@@ -92,9 +92,6 @@ TConjuntoIds unionTConjuntoIds(TConjuntoIds c1, TConjuntoIds c2)
 		insertarTConjuntoIds(c1->array[i], c);
 		insertarTConjuntoIds(c2->array[i], c);
 	}
-	liberarTConjuntoIds(c1);
-	liberarTConjuntoIds(c2);
-	
 	return c;
 };
 
