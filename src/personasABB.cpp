@@ -448,6 +448,7 @@ TPersonasABB deserializarTPersonasABB(TPilaPersona &pilaPersonas)
         desencolarDeTColaPersonasABB(cola);
     }
     liberarTColaPersonasABB(cola);
+    return personasABB;
 }
 
 ///////////////////////////////////////////////////////////////////////////
