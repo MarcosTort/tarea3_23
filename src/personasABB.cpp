@@ -390,8 +390,17 @@ void serializarTPersonasABBaux(TPilaPersona &pila, TPersonasABB personasABB)
 TPilaPersona serializarTPersonasABB(TPersonasABB personasABB)
 {
     TPilaPersona pila = crearTPilaPersona();
+    TPilaPersona pilaAux = crearTPilaPersona();
+    
     serializarTPersonasABBaux(pila, personasABB);
-    return pila;
+    while (!esVaciaTPilaPersona(pila))
+    {
+        apilarEnTPilaPersona(pilaAux, cimaDeTPilaPersona(pila));
+        desapilarDeTPilaPersona(pila);
+    }
+    liberarTPilaPersona(pila);
+
+    return pilaAux;
 }
 
 TPersonasABB deserializar(TPilaPersona pila)
