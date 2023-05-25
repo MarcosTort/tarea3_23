@@ -361,7 +361,6 @@ nat amplitudTPersonasABB(TPersonasABB personasABB)
     return amplitud;
 }
 
-
 void serializarTPersonasABBaux(TPilaPersona &pila, TPersonasABB personasABB)
 {
     TColaPersonasABB cola = crearTColaPersonasABB();
@@ -388,7 +387,7 @@ TPilaPersona serializarTPersonasABB(TPersonasABB personasABB)
 {
     TPilaPersona pila = crearTPilaPersona();
     TPilaPersona pilaAux = crearTPilaPersona();
-    
+
     serializarTPersonasABBaux(pila, personasABB);
     while (cantidadEnTPilaPersona(pila) > 0)
     {
@@ -399,36 +398,56 @@ TPilaPersona serializarTPersonasABB(TPersonasABB personasABB)
 
     return pilaAux;
 }
-
-TPersonasABB deserializar(TPilaPersona pila)
+void deserializarTPersonasABBaux(TPilaPersona &pila, TPersonasABB &personasABB, TColaPersonasABB &cola)
 {
     if (cantidadEnTPilaPersona(pila) == 0)
     {
-        return NULL;
+        return;
     }
-    TPersona persona = cimaDeTPilaPersona(pila);
-    TPersonasABB nuevo = new rep_personasAbb;
-    nuevo->persona = copiarTPersona(persona);
+    personasABB->persona = cimaDeTPilaPersona(pila);
     desapilarDeTPilaPersona(pila);
+    encolarEnTColaPersonasABB(personasABB, cola);
 
-    if (cantidadEnTPilaPersona(pila) == 1)
+    TPersonasABB aux = frenteDeTColaPersonasABB(cola);
+    if (aux != NULL)
     {
-        nuevo->izq = NULL;
-        nuevo->der = NULL;
+        deserializarTPersonasABBaux(pila, aux->izq, cola);
+        deserializarTPersonasABBaux(pila, aux->der, cola);
     }
-    else
-    {
-        nuevo->izq = deserializar(pila);
-        nuevo->der = deserializar(pila);
-    }
-    return nuevo;
+    desencolarDeTColaPersonasABB(cola);
 }
+
 TPersonasABB deserializarTPersonasABB(TPilaPersona &pilaPersonas)
 {
+    if (cantidadEnTPilaPersona(pilaPersonas) == 0)
+    {
+        return NULL;
+    }
+    TPersonasABB personasABB = crearTPersonasABB();
+    TColaPersonasABB cola = crearTColaPersonasABB();
 
-    TPersonasABB nuevo = deserializar(pilaPersonas);
-    liberarTPilaPersona(pilaPersonas);
-    return nuevo;
+    personasABB->persona = cimaDeTPilaPersona(pilaPersonas);
+    desapilarDeTPilaPersona(pilaPersonas);
+    encolarEnTColaPersonasABB(personasABB, cola);
+    while (cantidadEnTPilaPersona(pilaPersonas) > 0)
+    {
+        TPersonasABB izq = crearTPersonasABB();
+        TPersonasABB der = crearTPersonasABB();
+
+        izq->persona = cimaDeTPilaPersona(pilaPersonas);
+        personasABB->izq = izq;
+
+        desapilarDeTPilaPersona(pilaPersonas);
+
+        der->persona = cimaDeTPilaPersona(pilaPersonas);
+        personasABB->der = der;
+
+        desapilarDeTPilaPersona(pilaPersonas);
+        encolarEnTColaPersonasABB(personasABB->izq, cola);
+        encolarEnTColaPersonasABB(personasABB->der, cola);
+        desencolarDeTColaPersonasABB(cola);
+    }
+    liberarTColaPersonasABB(cola);
 }
 
 ///////////////////////////////////////////////////////////////////////////
