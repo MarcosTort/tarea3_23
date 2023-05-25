@@ -70,7 +70,7 @@ bool sumaPares(nat k, TConjuntoIds c)
 {
 
 
-  for (nat i = 1; i <= cantMaxTConjuntoIds(c); i++)
+  for (nat i = 1; i < cantMaxTConjuntoIds(c); i++)
   {
      if(perteneceTConjuntoIds( k - i, c) && perteneceTConjuntoIds(i, c))
      {
