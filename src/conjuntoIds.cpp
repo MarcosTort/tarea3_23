@@ -30,7 +30,7 @@ bool esVacioTConjuntoIds(TConjuntoIds c)
 
 void insertarTConjuntoIds(nat id, TConjuntoIds &c)
 {
-	if (c->cantElem > c->cantMax || id > c->cantMax || id == 0)
+	if ( id > c->cantMax || id == 0)
 		return;
 
 	c->array[id - 1] = id;
@@ -88,7 +88,7 @@ void liberarTConjuntoIds(TConjuntoIds &c)
 	}
 TConjuntoIds unionTConjuntoIds(TConjuntoIds c1, TConjuntoIds c2)
 {
-	nat cantMax = max(c1->cantMax, c2->cantMax) + 1;
+	nat cantMax = max(c1->cantMax, c2->cantMax);
 	TConjuntoIds c = crearTConjuntoIds(cantMax );
 	c->cantMax = cantMax;
 
