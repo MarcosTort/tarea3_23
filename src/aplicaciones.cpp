@@ -66,26 +66,30 @@ TPilaPersona menoresQueElResto(TPersonasLDE lista)
 // k = c1 + c2
 // c1 = k - c2
 
-
+// Función que determina si hay un par de ids pertenecientes a "c" tales que su suma es igual a "k"
 bool sumaPares(nat k, TConjuntoIds c)
 {
-    nat cantidad = cardinalTConjuntoIds(c);
-    bool * array = new bool[cantidad];
-    for (nat i = 0; i < cantidad; i++)
+   TConjuntoIds paresDeK = crearTConjuntoIds(k);
+   TConjuntoIds paresDeC = interseccionTConjuntoIds(c, paresDeK);
+
+    for (nat i = 1; i <= cantMaxTConjuntoIds(paresDeC); i++)
     {
-        array[i] = false;
-    }
-    for (nat i = 0; i < cantidad; i++)
-    {
-        if (i % 2 == 0)
+        if (perteneceTConjuntoIds(k - i, paresDeC))
         {
-            nat id2 = k - i;
-            if (perteneceTConjuntoIds(id2, c))
-            {
-                array[i] = true;
-            }
+          liberarTConjuntoIds(paresDeK);
+          liberarTConjuntoIds(paresDeC);
+          return true;
         }
+      else
+      {
+        liberarTConjuntoIds(paresDeK);
+        liberarTConjuntoIds(paresDeC);
+        return false;
+      }
     }
+    
+
+   
 
     
 }
