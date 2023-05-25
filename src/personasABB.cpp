@@ -427,6 +427,7 @@ TPersonasABB deserializarTPersonasABB(TPilaPersona &pilaPersonas)
         encolarEnTColaPersonasABB(personasABB->der, cola);
         desencolarDeTColaPersonasABB(cola);
     }
+    desencolarDeTColaPersonasABB(cola);
     liberarTColaPersonasABB(cola);
     liberarTPilaPersona(pilaPersonas);
     return personasABB;
