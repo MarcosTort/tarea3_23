@@ -71,16 +71,15 @@ bool sumaPares(nat k, TConjuntoIds c)
   TConjuntoIds paresDeK = crearTConjuntoIds(k);
   TConjuntoIds paresDeC = interseccionTConjuntoIds(c, paresDeK);
 
-  for (nat i = 1; i <= cantMaxTConjuntoIds(paresDeC); i++)
+  for (nat i = 0; i <= cantMaxTConjuntoIds(paresDeC); i = i+2)
   {
-    if (perteneceTConjuntoIds(k - i, paresDeC))
-    {
-      liberarTConjuntoIds(paresDeK);
-      liberarTConjuntoIds(paresDeC);
-      return true;
-    }
+     if(perteneceTConjuntoIds( k - i, paresDeC))
+     {
+        liberarTConjuntoIds(paresDeK);
+       return true;
+     }
   }
   liberarTConjuntoIds(paresDeK);
-  liberarTConjuntoIds(paresDeC);
+  
   return false;
 }
