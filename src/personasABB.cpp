@@ -377,7 +377,7 @@ void serializarTPersonasABBaux(TPilaPersona &pila, TPersonasABB personasABB)
         TPersonasABB aux = frenteDeTColaPersonasABB(cola);
         if (aux != NULL)
         {
-            TPersona persona = copiarTPersona(aux->persona);
+            TPersona persona = aux->persona;
             apilarEnTPilaPersona(pila, persona);
             encolarEnTColaPersonasABB(aux->izq, cola);
             encolarEnTColaPersonasABB(aux->der, cola);
