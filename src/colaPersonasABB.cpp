@@ -27,7 +27,6 @@ void liberarTColaPersonasABB(TColaPersonasABB &c)
   {
     aux = c->primero;
     c->primero = c->primero->siguiente;
-    liberarTPersonasABB(aux->persona);
     delete aux;
 
   }
