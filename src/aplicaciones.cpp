@@ -82,4 +82,5 @@ bool sumaPares(nat k, TConjuntoIds c)
             }
         }
     }
+    return false;
 }
