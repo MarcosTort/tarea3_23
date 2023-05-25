@@ -103,7 +103,7 @@ crearPersona 13 13 Lucia
 insertarPersonaArbolPersonas
 
 # Transformo arbol en lista
-serializarArbolPersonas
+# serializarArbolPersonas
 
 liberarArbolPersonas
 
