@@ -8,32 +8,19 @@ TPilaPersona menoresQueElResto(TPersonasLDE lista)
   {
     TPersonasLDE aux = lista;
     apilarEnTPilaPersona(p, obtenerInicioDeTPersonasLDE(aux));
-    
+
     for (nat i = 1; i <= cantidad; i++)
     {
       TPersona persona = obtenerDeTPersonasLDE(aux, i);
-      if (cantidadEnTPilaPersona(p) > 0)
+
+      if (edadTPersona(cimaDeTPilaPersona(p)) < edadTPersona(persona))
       {
 
-        if (edadTPersona(cimaDeTPilaPersona(p)) < edadTPersona(persona))
-        {
-
-          apilarEnTPilaPersona(p, persona);
-        }
-        else
-        {
-            desapilarDeTPilaPersona(p);
-        
-        }
-      }
-      else
-      {
         apilarEnTPilaPersona(p, persona);
       }
     }
   }
   return p;
- 
 }
 // k = c1 + c2
 // c1 = k - c2
