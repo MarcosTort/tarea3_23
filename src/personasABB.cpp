@@ -1,4 +1,5 @@
 #include "../include/personasABB.h"
+#include "../include/colaPersonasABB.h"
 #include <math.h>
 
 struct rep_personasAbb
@@ -364,37 +365,35 @@ bool esVaciaTPilaPersona(TPilaPersona pila)
     return pila == NULL;
 }
 
-void serializarTPersonasABBaux(TPilaPersona &pila, TPersonasABB &personasABB, int nivel)
+void serializarTPersonasABBaux(TPilaPersona &pila, TPersonasABB personasABB)
 {
-    if (nivel == 0)
+    TColaPersonasABB cola = crearTColaPersonasABB();
+    if (personasABB != NULL)
     {
-        return;
+        encolarEnTColaPersonasABB(personasABB, cola);
     }
-    else
+    while (cantidadEnTColaPersonasABB(cola) > 0)
     {
-
-        apilarEnTPilaPersona(pila, personasABB->persona);
-        serializarTPersonasABBaux(pila, personasABB->izq, nivel - 1);
-        serializarTPersonasABBaux(pila, personasABB->der, nivel - 1);
-        return;
+        TPersonasABB aux = frenteDeTColaPersonasABB(cola);
+        if (aux != NULL)
+        {
+            TPersona persona = copiarTPersona(aux->persona);
+            apilarEnTPilaPersona(pila, persona);
+            encolarEnTColaPersonasABB(aux->izq, cola);
+            encolarEnTColaPersonasABB(aux->der, cola);
+        }
+        desencolarDeTColaPersonasABB(cola);
     }
+    liberarTColaPersonasABB(cola);
 }
 
 TPilaPersona serializarTPersonasABB(TPersonasABB personasABB)
 {
     TPilaPersona pila = crearTPilaPersona();
-    TPilaPersona pilaAux = crearTPilaPersona();
-    int altura = alturaTPersonasABB(personasABB);
-    serializarTPersonasABBaux(pila, personasABB, altura);
-
-    while (cantidadEnTPilaPersona(pila) > 0)
-    {
-        apilarEnTPilaPersona(pilaAux, cimaDeTPilaPersona(pila));
-        desapilarDeTPilaPersona(pila);
-    }
-    liberarTPilaPersona(pila);
-    return pilaAux;
+    serializarTPersonasABBaux(pila, personasABB);
+    return pila;
 }
+
 TPersonasABB deserializar(TPilaPersona pila)
 {
     if (cantidadEnTPilaPersona(pila) == 0)
