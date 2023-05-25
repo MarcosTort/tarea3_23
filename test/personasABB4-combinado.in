@@ -109,8 +109,6 @@ liberarArbolPersonas
 
 crearPila
 
-imprimirCantidadPila
-
 # Construyo lista 
 crearPersona 36 36 Diego
 apilar
@@ -171,9 +169,8 @@ liberarPersona
 crearPersona 20 20 Juan
 apilar
 liberarPersona
-imprimirCantidadPila
+
 # Transformo lista en arbol
 deserializarArbolPersonas
-imprimirCantidadPila
 
 Fin
