@@ -7,20 +7,59 @@ TPilaPersona menoresQueElResto(TPersonasLDE lista)
   if (lista != NULL)
   {
     TPersonasLDE aux = lista;
-    apilarEnTPilaPersona(p, obtenerInicioDeTPersonasLDE(aux));
-
     for (nat i = 1; i <= cantidad; i++)
     {
-      TPersona persona = obtenerDeTPersonasLDE(aux, i);
-
-      if (edadTPersona(cimaDeTPilaPersona(p)) < edadTPersona(persona))
+      if (cantidadEnTPilaPersona(p) > 0)
       {
 
-        apilarEnTPilaPersona(p, persona);
+        if (edadTPersona(cimaDeTPilaPersona(p)) < edadTPersona(obtenerInicioDeTPersonasLDE(aux)))
+        {
+          apilarEnTPilaPersona(p, obtenerInicioDeTPersonasLDE(aux));
+        }
+        else
+        {
+
+          while (cantidadEnTPilaPersona(p) > 0 && edadTPersona(cimaDeTPilaPersona(p)) >= edadTPersona(obtenerInicioDeTPersonasLDE(aux)))
+          {
+            desapilarDeTPilaPersona(p);
+          }
+          apilarEnTPilaPersona(p, obtenerInicioDeTPersonasLDE(aux));
+        }
       }
+      else
+      {
+
+        apilarEnTPilaPersona(p, obtenerInicioDeTPersonasLDE(aux));
+      }
+      eliminarInicioTPersonasLDE(aux);
     }
   }
   return p;
+  // int cantidad = cantidadTPersonasLDE(lista);
+  // TPilaPersona pila = crearTPilaPersona();
+  // apilarEnTPilaPersona(pila, obtenerDeTPersonasLDE(lista, 1));
+  // for (int i = 2; i <= cantidad; i++)
+  // {
+  //     TPersona persona = obtenerDeTPersonasLDE(lista, i);
+  //     TPersona persona2 = obtenerDeTPersonasLDE(lista, i + 1);
+  //     if (persona2 == NULL)
+  //     {
+  //         break;
+  //     }
+  //     if (edadTPersona(persona) < edadTPersona(persona2))
+  //     {
+  //         apilarEnTPilaPersona(pila, persona);
+  //     }
+  //     else
+  //     {
+  //         while (cantidadEnTPilaPersona(pila))
+  //         {
+  //             desapilarDeTPilaPersona(pila);
+  //         }
+  //         apilarEnTPilaPersona(pila, persona2);
+  //     }
+  // }
+  // return pila;
 }
 // k = c1 + c2
 // c1 = k - c2
