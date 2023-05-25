@@ -1,4 +1,6 @@
 #include "../include/personasABB.h"
+#include "../include/colaPersonasABB.h"
+#include <math.h>
 
 struct rep_personasAbb
 {
@@ -385,32 +387,45 @@ TPilaPersona serializarTPersonasABB(TPersonasABB personasABB)
     TPilaPersona pilaAux = crearTPilaPersona();
     int altura = alturaTPersonasABB(personasABB);
     serializarTPersonasABBaux(pila, personasABB, altura);
-    
+
     while (cantidadEnTPilaPersona(pila) > 0)
     {
-        apilarEnTPilaPersona(pilaAux,cimaDeTPilaPersona(pila));
+        apilarEnTPilaPersona(pilaAux, cimaDeTPilaPersona(pila));
         desapilarDeTPilaPersona(pila);
     }
     liberarTPilaPersona(pila);
     return pilaAux;
 }
-
-TPersonasABB deserializarTPersonasABB(TPilaPersona &pilaPersonas)
+TPersonasABB deserializar(TPilaPersona pila, nat nivel)
 {
-    if (esVaciaTPilaPersona(pilaPersonas))
+    if (cantidadEnTPilaPersona(pila) == 0 || nivel < 1)
     {
         return NULL;
     }
+    TPersona persona = cimaDeTPilaPersona(pila);
+    TPersonasABB nuevo = new rep_personasAbb;
+    nuevo->persona = copiarTPersona(persona);
+    desapilarDeTPilaPersona(pila);
+
+    if (nivel == 1)
+    {
+        nuevo->izq = NULL;
+        nuevo->der = NULL;
+    }
     else
     {
-        TPersonasABB personasABB = new rep_personasAbb;
-        personasABB->persona = cimaDeTPilaPersona(pilaPersonas);
-        desapilarDeTPilaPersona(pilaPersonas);
-        personasABB->izq = deserializarTPersonasABB(pilaPersonas);
-        personasABB->der = deserializarTPersonasABB(pilaPersonas);
-        return personasABB;
+        nuevo->izq = deserializar(pila, nivel - 1);
+        nuevo->der = deserializar(pila, nivel - 1);
     }
-    
+    return nuevo;
+}
+TPersonasABB deserializarTPersonasABB(TPilaPersona &pilaPersonas)
+{
+
+  nat altura = log2(cantidadEnTPilaPersona(pilaPersonas)+1);
+    TPersonasABB nuevo = deserializar(pilaPersonas, altura);
+    liberarTPilaPersona(pilaPersonas);
+    return nuevo;
 }
 
 ///////////////////////////////////////////////////////////////////////////
