@@ -383,7 +383,7 @@ TPilaPersona invertirPila(TPilaPersona pila)
     TPilaPersona pilaInvertida = crearTPilaPersona();
     while (cantidadEnTPilaPersona(pila) > 0)
     {
-        apilarEnTPilaPersona(pilaInvertida, cimaDeTPilaPersona(pila));
+        apilarEnTPilaPersona(pilaInvertida, copiarTPersona(cimaDeTPilaPersona(pila)));
         desapilarDeTPilaPersona(pila);
     }
     return pilaInvertida;
