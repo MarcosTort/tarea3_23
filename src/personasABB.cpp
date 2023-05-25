@@ -1,5 +1,4 @@
 #include "../include/personasABB.h"
-#include "../include/colaPersonasABB.h"
 #include <math.h>
 
 struct rep_personasAbb
