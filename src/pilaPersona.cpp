@@ -15,6 +15,8 @@ TPilaPersona crearTPilaPersona()
 
 void liberarTPilaPersona(TPilaPersona &p)
 {
+  if (p == NULL)
+    return;
   liberarTPersonasLDE(p->personas);
   delete p;
   p = NULL;
