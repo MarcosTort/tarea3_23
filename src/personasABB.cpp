@@ -362,6 +362,14 @@ bool esVaciaTPilaPersona(TPilaPersona pila)
 {
     return pila == NULL;
 }
+void invertirPila(TPilaPersona pila, TPilaPersona &pilaInvertida)
+{
+    while (cantidadEnTPilaPersona(pila) > 0)
+    {
+        apilarEnTPilaPersona(pilaInvertida, cimaDeTPilaPersona(pila));
+        desapilarDeTPilaPersona(pila);
+    }
+}
 void serializarTPersonasABBaux(TPilaPersona pila, TPersonasABB personasABB, int nivel)
 {
     if (nivel == 0)
@@ -378,24 +386,15 @@ void serializarTPersonasABBaux(TPilaPersona pila, TPersonasABB personasABB, int 
     }
 }
 
-TPilaPersona invertirPila(TPilaPersona pila)
-{
-    TPilaPersona pilaInvertida = crearTPilaPersona();
-    while (cantidadEnTPilaPersona(pila) > 0)
-    {
-        apilarEnTPilaPersona(pilaInvertida, copiarTPersona(cimaDeTPilaPersona(pila)));
-        desapilarDeTPilaPersona(pila);
-    }
-    return pilaInvertida;
-}
-
 TPilaPersona serializarTPersonasABB(TPersonasABB personasABB)
 {
     TPilaPersona pila = crearTPilaPersona();
+    TPilaPersona pilaAux = crearTPilaPersona();
     int altura = alturaTPersonasABB(personasABB);
     serializarTPersonasABBaux(pila, personasABB, altura);
-
-    return invertirPila(pila);
+    invertirPila(pila, pilaAux);
+    liberarTPilaPersona(pila);
+    return pilaAux;
 }
 
 TPersonasABB deserializarTPersonasABB(TPilaPersona &pilaPersonas)
