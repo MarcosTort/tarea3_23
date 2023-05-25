@@ -73,7 +73,6 @@ bool sumaPares(nat k, TConjuntoIds c)
   {
     if (perteneceTConjuntoIds(k - i, c) && perteneceTConjuntoIds(i, c) && i != k - i)
     {
-      printf("%d + %d = %d\n", i, k - i, k);
       return true;
     }
   }
