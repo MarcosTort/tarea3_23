@@ -121,7 +121,7 @@ TConjuntoIds diferenciaTConjuntoIds(TConjuntoIds c1, TConjuntoIds c2)
 	TConjuntoIds c = crearTConjuntoIds(c1->cantMax);
 	for (nat i = 0; i < c1->cantMax; i++)
 	{
-		if (!perteneceTConjuntoIds(i, c2))
+		if (perteneceTConjuntoIds(i, c1) && !perteneceTConjuntoIds(i, c2))
 		{
 			insertarTConjuntoIds(i, c);
 		}
