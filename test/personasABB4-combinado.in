@@ -103,11 +103,13 @@ crearPersona 13 13 Lucia
 insertarPersonaArbolPersonas
 
 # Transformo arbol en lista
-# serializarArbolPersonas
+serializarArbolPersonas
 
 liberarArbolPersonas
 
 crearPila
+
+imprimirCantidadPila
 
 # Construyo lista 
 crearPersona 36 36 Diego
@@ -169,8 +171,9 @@ liberarPersona
 crearPersona 20 20 Juan
 apilar
 liberarPersona
-
+imprimirCantidadPila
 # Transformo lista en arbol
 deserializarArbolPersonas
+imprimirCantidadPila
 
 Fin
