@@ -435,11 +435,16 @@ TPersonasABB deserializarTPersonasABB(TPilaPersona &pilaPersonas)
         TPersonasABB der = new rep_personasAbb;
 
         izq->persona = copiarTPersona(cimaDeTPilaPersona(pilaPersonas));
+        izq->izq = NULL;
+        izq->der = NULL;
         personasABB->izq = izq;
+
 
         desapilarDeTPilaPersona(pilaPersonas);
 
         der->persona = copiarTPersona(cimaDeTPilaPersona(pilaPersonas));
+        der->izq = NULL;
+        der->der = NULL;
         personasABB->der = der;
 
         desapilarDeTPilaPersona(pilaPersonas);
