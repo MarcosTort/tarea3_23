@@ -415,23 +415,22 @@ TPersonasABB deserializarTPersonasABB(TPilaPersona &pilaPersonas)
     while (cantidadEnTPilaPersona(pilaPersonas) > 0)
     {
         TPersonasABB frenteCola = frenteDeTColaPersonasABB(cola);
-        TPersonasABB izq = crearTPersonasABB();
-        TPersonasABB der = crearTPersonasABB();
-        insertarTPersonasABB(izq, copiarTPersona(cimaDeTPilaPersona(pilaPersonas)));
+        TPersonasABB izq = new rep_personasAbb;
+        TPersonasABB der = new rep_personasAbb;
+        izq->persona = copiarTPersona(cimaDeTPilaPersona(pilaPersonas));
         desapilarDeTPilaPersona(pilaPersonas);
-        insertarTPersonasABB(der, copiarTPersona(cimaDeTPilaPersona(pilaPersonas)));
+        der->persona = copiarTPersona(cimaDeTPilaPersona(pilaPersonas));
+        desapilarDeTPilaPersona(pilaPersonas);
         izq->izq = NULL;
         izq->der = NULL;
         der->izq = NULL;
         der->der = NULL;
-        desapilarDeTPilaPersona(pilaPersonas);
         frenteCola->der = der;
         frenteCola->izq = izq;
         encolarEnTColaPersonasABB(personasABB->izq, cola);
         encolarEnTColaPersonasABB(personasABB->der, cola);
         desencolarDeTColaPersonasABB(cola);
     }
-    desencolarDeTColaPersonasABB(cola);
     liberarTColaPersonasABB(cola);
     liberarTPilaPersona(pilaPersonas);
     return personasABB;
