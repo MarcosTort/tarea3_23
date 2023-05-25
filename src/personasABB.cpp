@@ -411,6 +411,7 @@ TPersonasABB deserializarTPersonasABB(TPilaPersona &pilaPersonas)
         insertarTPersonasABB(personasABB, copiarTPersona(persona));
         desapilarDeTPilaPersona(pilaPersonas);
     }
+    liberarTPilaPersona(pilaPersonas);
     return personasABB;
 }
 
