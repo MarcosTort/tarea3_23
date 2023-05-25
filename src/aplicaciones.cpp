@@ -63,24 +63,29 @@ TPilaPersona menoresQueElResto(TPersonasLDE lista)
     // return pila;
 
 }
+// k = c1 + c2
+// c1 = k - c2
+
 
 bool sumaPares(nat k, TConjuntoIds c)
 {
-    for (nat i = 1; i <= k; i++)
+    nat cantidad = cardinalTConjuntoIds(c);
+    bool * array = new bool[cantidad];
+    for (nat i = 0; i < cantidad; i++)
     {
-        if (perteneceTConjuntoIds(i, c))
+        array[i] = false;
+    }
+    for (nat i = 0; i < cantidad; i++)
+    {
+        if (i % 2 == 0)
         {
-            for (nat j = 1; j <= k; j++)
+            nat id2 = k - i;
+            if (perteneceTConjuntoIds(id2, c))
             {
-                if (perteneceTConjuntoIds(j, c))
-                {
-                    if ((i + j) % 2 == 0)
-                    {
-                        return true;
-                    }
-                }
+                array[i] = true;
             }
         }
     }
-    return false;
+
+    
 }
