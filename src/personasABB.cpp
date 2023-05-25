@@ -401,21 +401,27 @@ TPersonasABB deserializar(TPilaPersona pila)
     {
         return NULL;
     }
+    TPersona persona = cimaDeTPilaPersona(pila);
+    TPersonasABB nuevo = new rep_personasAbb;
+    nuevo->persona = copiarTPersona(persona);
+    desapilarDeTPilaPersona(pila);
 
+    if (cantidadEnTPilaPersona(pila) == 1)
+    {
+        nuevo->izq = NULL;
+        nuevo->der = NULL;
+    }
     else
     {
-        TPersona persona = cimaDeTPilaPersona(pila);
-        TPersonasABB nuevo = new rep_personasAbb;
-        nuevo->persona = copiarTPersona(persona);
-        desapilarDeTPilaPersona(pila);
         nuevo->izq = deserializar(pila);
         nuevo->der = deserializar(pila);
-        return nuevo;
     }
+    return nuevo;
 }
 TPersonasABB deserializarTPersonasABB(TPilaPersona &pilaPersonas)
 {
 
+    nat altura = log2(cantidadEnTPilaPersona(pilaPersonas) + 1);
     TPersonasABB nuevo = deserializar(pilaPersonas);
     liberarTPilaPersona(pilaPersonas);
     return nuevo;
