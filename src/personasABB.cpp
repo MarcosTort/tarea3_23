@@ -364,7 +364,7 @@ bool esVaciaTPilaPersona(TPilaPersona pila)
     return pila == NULL;
 }
 
-void serializarTPersonasABBaux(TPilaPersona pila, TPersonasABB personasABB, int nivel)
+void serializarTPersonasABBaux(TPilaPersona &pila, TPersonasABB &personasABB, int nivel)
 {
     if (nivel == 0)
     {
