@@ -420,6 +420,10 @@ TPersonasABB deserializarTPersonasABB(TPilaPersona &pilaPersonas)
         insertarTPersonasABB(izq, copiarTPersona(cimaDeTPilaPersona(pilaPersonas)));
         desapilarDeTPilaPersona(pilaPersonas);
         insertarTPersonasABB(der, copiarTPersona(cimaDeTPilaPersona(pilaPersonas)));
+        izq->izq = NULL;
+        izq->der = NULL;
+        der->izq = NULL;
+        der->der = NULL;
         desapilarDeTPilaPersona(pilaPersonas);
         frenteCola->der = der;
         frenteCola->izq = izq;
