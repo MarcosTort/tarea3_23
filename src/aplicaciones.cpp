@@ -22,12 +22,8 @@ TPilaPersona menoresQueElResto(TPersonasLDE lista)
         }
         else
         {
-
-          while (cantidadEnTPilaPersona(p) > 0 )
-          {
             desapilarDeTPilaPersona(p);
-          }
-          apilarEnTPilaPersona(p, persona);
+        
         }
       }
       else
