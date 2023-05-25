@@ -412,6 +412,8 @@ TPersonasABB deserializarTPersonasABB(TPilaPersona &pilaPersonas)
     personasABB->der = NULL;
     desapilarDeTPilaPersona(pilaPersonas);
     encolarEnTColaPersonasABB(personasABB, cola);
+    printf("edad: %d\n", edadTPersona(cimaDeTPilaPersona(pilaPersonas)));
+
     while (cantidadEnTPilaPersona(pilaPersonas) > 0)
     {
         printf("edad: %d\n", edadTPersona(cimaDeTPilaPersona(pilaPersonas)));
@@ -420,8 +422,11 @@ TPersonasABB deserializarTPersonasABB(TPilaPersona &pilaPersonas)
         TPersonasABB der = new rep_personasAbb;
         izq->persona = copiarTPersona(cimaDeTPilaPersona(pilaPersonas));
         desapilarDeTPilaPersona(pilaPersonas);
+        printf("edad: %d\n", edadTPersona(cimaDeTPilaPersona(pilaPersonas)));
+
         der->persona = copiarTPersona(cimaDeTPilaPersona(pilaPersonas));
         desapilarDeTPilaPersona(pilaPersonas);
+
         izq->izq = NULL;
         izq->der = NULL;
         der->izq = NULL;
