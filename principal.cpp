@@ -118,6 +118,7 @@ void main_amplitudArbolPersonas(TPersonasABB arbolPersonas);
 void main_amplitudArbolPersonasTiempo(TPersonasABB &arbolPersonas);
 void main_serializarArbolPersonas(TPersonasABB arbolPersonas);
 void main_deserializarArbolPersonas(TPilaPersona pilaPersonas);
+void main_deserializarArbolPersonasTiempo();
 //Funciones para testear pilaPersona
 void main_crearPila(TPilaPersona &pilaPersona);
 void main_liberarPila(TPilaPersona &pilaPersona);
@@ -150,6 +151,7 @@ void main_diferenciaConjuntoIds(TConjuntoIds &conjuntoIds1, TConjuntoIds &conjun
 void main_menoresQueElResto(TPersonasLDE lista);
 void main_menoresQueElRestoTiempo();
 void main_sumaPares(TConjuntoIds &conjuntoIds);
+void main_sumaParesTiempo();
 
 // programa principal que lee comandos de la entrada estándar e invoca a la función de test correspondiente
 int main() {
@@ -425,6 +427,9 @@ int main() {
         } else if (cmd_es("deserializarArbolPersonas", cmd)) {
             main_deserializarArbolPersonas(pilaPersona);
 
+        } else if (cmd_es("deserializarArbolPersonasTiempo", cmd)) {
+            main_deserializarArbolPersonasTiempo();
+
         } else if (cmd_es("aplanarArbolPersonas", cmd)) {
             main_aplanarArbolPersonas(arbolPersonas);
 
@@ -547,6 +552,9 @@ int main() {
 
         } else if (cmd_es("sumaPares", cmd)) {
             main_sumaPares(conjuntoIds[0]);
+
+        } else if (cmd_es("sumaParesTiempo", cmd)) {
+            main_sumaParesTiempo();
 
         } else {
             printf("Comando no reconocido.\n");  // Comando no reconocido
@@ -1196,6 +1204,33 @@ void main_deserializarArbolPersonas(TPilaPersona pilaPersonas){
     liberarTPersonasABB(arbolPersonas);
 }
 
+void main_deserializarArbolPersonasTiempo(){
+    nat tamanio = leerNat();
+    nat timeout = leerNat();
+
+    TPilaPersona pila = crearTPilaPersona();
+    for (nat i = 0; i < tamanio; i++) {
+        TPersona persona = crearTPersona(i, i*2, "Juan", NULL);
+        apilarEnTPilaPersona(pila, persona);
+        liberarTPersona(persona);
+    }
+
+    clock_t tm = clock();
+    TPersonasABB arbol = deserializarTPersonasABB(pila);
+    tm = clock() - tm;
+    nat amp = amplitudTPersonasABB(arbol);
+    nat cant = cantidadTPersonasABB(arbol);
+    printf ("La amplitud del árbol es: %d.\n", amp);
+    printf ("La cantidad de personas en el árbol es: %d.\n", cant);
+    liberarTPersonasABB(arbol);
+    float tiempo = ((float)tm) / CLOCKS_PER_SEC;
+    //printf("%f \n", tiempo);
+    if (tiempo > timeout)
+        printf("ERROR, tiempo excedido; %.1f > %d \n", tiempo, timeout);
+    else
+        printf("Bien.\n");
+}
+
 ////////////////////////////////
 /* Funciones main para PilaPersonas */
 ////////////////////////////////
@@ -1367,6 +1402,34 @@ void main_sumaPares(TConjuntoIds &conjuntoIds) {
     } else {
         printf("No existe un par de elementos en el conjunto cuya suma es %d.\n", k);
     }
+}
+
+void main_sumaParesTiempo() {
+    nat k = leerNat();
+    nat tamanio = leerNat();
+    nat timeout = leerNat();
+    
+    TConjuntoIds conjuntoIds = crearTConjuntoIds(tamanio);
+    for (nat i = 0; i < tamanio; i++) {  
+        insertarTConjuntoIds(i, conjuntoIds);
+    }
+
+    clock_t tm = clock();
+    bool pares = sumaPares(k, conjuntoIds);
+    tm = clock() - tm;
+    float tiempo = ((float)tm) / CLOCKS_PER_SEC;
+    //printf("%f \n", tiempo);
+    if (pares) {
+        printf("Existe un par de elementos en el conjunto cuya suma es %d.\n", k);
+    } else {
+        printf("No existe un par de elementos en el conjunto cuya suma es %d.\n", k);
+    }
+    liberarTConjuntoIds(conjuntoIds);
+    
+    if (tiempo > timeout)
+        printf("ERROR, tiempo excedido; %.1f > %d \n", tiempo, timeout);
+    else
+        printf("Bien.\n");    
 }
 
 void main_menoresQueElResto(TPersonasLDE lista) {
