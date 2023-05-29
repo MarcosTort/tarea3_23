@@ -1,0 +1,10 @@
+493e10033373700ff10473adaa2b129028d911fd  src/fecha.cpp
+2d6861a20b28c919aeb42564826f875f3472f0e0  src/evento.cpp
+b0fb8705c57c33f07647c739cadd2947f0edc81f  src/agendaLS.cpp
+09a955bd82ad03cee29a3de3e61831ac10c961c4  src/persona.cpp
+c6beed048fc75f6232d3575197570a31d6556b22  src/personasLDE.cpp
+883dcd958db0a22488b0f54bbecb708981afca95  src/personasABB.cpp
+6bb53d7906d122d534cc2dd0a6684b6935ebcbad  src/pilaPersona.cpp
+e7f61bceab8950198998ac876e1d9dcff96c8e46  src/colaPersonasABB.cpp
+df4a92f67832588c0ebc98f5c72b835586f94526  src/conjuntoIds.cpp
+5e7f9362d381467c37bcf3bb2d94291f5adb5980  src/aplicaciones.cpp
